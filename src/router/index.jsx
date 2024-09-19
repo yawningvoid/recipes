@@ -8,8 +8,8 @@ export const router = createHashRouter([
     element: <Home/>,
   },
   {
-    path: '/page/:pageNumber',
-    element: <Home />, 
+    path: '/page/:pageNumber/:query?/:cuisine?',
+    element: <Home />,
   },
   {
     path: '/:id',

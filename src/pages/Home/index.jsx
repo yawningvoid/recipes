@@ -1,18 +1,20 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useRecipes } from '../../hooks/useFetch.js'
 import RecipeListItem from '../../components/RecipeListItem/index.jsx'
 import './index.scss'
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [query, setQuery] = useState('')
-  const [cuisine, setCuisine] = useState('')
-  const [searchCuisine, setSearchCuisine] = useState('')
-  const { pageNumber } = useParams() 
-  const [page, setPage] = useState(pageNumber || 1)
-  const { data, error, isLoading } = useRecipes(query, cuisine, page)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { pageNumber = 1 } = useParams()
   const navigate = useNavigate()
+
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('query') || '')
+  const [query, setQuery] = useState(searchParams.get('query') || '')
+  const [cuisine, setCuisine] = useState(searchParams.get('cuisine') || '')
+  const [searchCuisine, setSearchCuisine] = useState(searchParams.get('cuisine') || '')
+
+  const { data, error, isLoading } = useRecipes(query, cuisine, pageNumber)
 
   const cuisines = [
     "",
@@ -48,8 +50,8 @@ const Home = () => {
   const handleSearch = () => {
     setQuery(searchQuery)
     setCuisine(searchCuisine)
-    setPage(1) 
-    navigate(`/page/1`)
+    setSearchParams({ query: searchQuery, cuisine: searchCuisine })
+    navigate(`/page/1?query=${searchQuery}&cuisine=${searchCuisine}`)
   }
 
   const handleKeyDown = (event) => {
@@ -67,8 +69,7 @@ const Home = () => {
   }
 
   const handlePageChange = (newPage) => {
-    setPage(newPage)
-    navigate(`/page/${newPage}`)
+    navigate(`/page/${newPage}?query=${query}&cuisine=${cuisine}`)
   }
 
   const recipes = data?.results || []
@@ -120,15 +121,17 @@ const Home = () => {
             </div>
             <div className="pagination">
               <button
-                disabled={page <= 1}
-                onClick={() => handlePageChange(page - 1)}
+                disabled={parseInt(pageNumber, 10) <= 1}
+                className={parseInt(pageNumber, 10) <= 1 ? "button-disabled" : ""}
+                onClick={() => handlePageChange(parseInt(pageNumber, 10) - 1)}
               >
                 Previous
               </button>
-              <div> Page {page} of {totalPages} </div>
+              <div> Page {pageNumber} of {totalPages} </div>
               <button
-                disabled={page >= totalPages}
-                onClick={() => handlePageChange(page + 1)}
+                disabled={parseInt(pageNumber, 10) >= totalPages}
+                className={parseInt(pageNumber, 10) >= totalPages ? "button-disabled" : ""}
+                onClick={() => handlePageChange(parseInt(pageNumber, 10) + 1)}
               >
                 Next
               </button>
