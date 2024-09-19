@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useRecipeDetail } from "../../hooks/useFetch"
+import { useRecipeDetail } from "../../hooks/useFetch.js"
 import "./index.scss"
 
 function Detail() {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useRecipes } from '../../hooks/useFetch'
-import RecipeListItem from '../../components/RecipeListItem'
+import { useRecipes } from '../../hooks/useFetch.js'
+import RecipeListItem from '../../components/RecipeListItem/index.jsx'
 import './index.scss'
 
 const Home = () => {
