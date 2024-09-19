@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useRecipeDetail } from "../../hooks/useFetch.js"
+import { Link } from "react-router-dom"
 import "./index.scss"
 
 function Detail() {
@@ -14,7 +15,7 @@ function Detail() {
   return (
     <div className="container">
       <menu>
-        <li><a href="/">Home</a></li>
+        <li><Link to="/">Home</Link></li>
       </menu>
       <h1>{title}</h1>
       <div className="cover">
