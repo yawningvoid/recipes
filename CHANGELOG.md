@@ -1,3 +1,11 @@
+## [0.0.2](https://github.com/yawningvoid/recipes/compare/v0.0.1...v0.0.2) (2025-01-08)
+
+
+### Bug Fixes
+
+* test correct versioning ([ca5b37f](https://github.com/yawningvoid/recipes/commit/ca5b37f81cb1293e9d11515a9baa132ed51ba1ff))
+* testing version increment ([2036bf0](https://github.com/yawningvoid/recipes/commit/2036bf021a1da15a146707a454a5a3b75a3f884f))
+
 ## [1.0.1](https://github.com/yawningvoid/recipes/compare/v1.0.0...v1.0.1) (2025-01-08)
 
 

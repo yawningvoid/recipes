@@ -2,7 +2,7 @@
   "name": "recipes",
   "homepage": "https://yawningvoid.github.io/recipes/",
   "private": true,
-  "version": "1.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
